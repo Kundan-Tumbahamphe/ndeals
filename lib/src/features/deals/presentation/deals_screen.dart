@@ -58,6 +58,7 @@ class _DealsScreenState extends ConsumerState<DealsScreen> {
       pinned: true,
       delegate: AllDealsStickyHeaderDelegate(
         child: Container(
+          height: 35.h,
           color: const Color(0xfff6f6f6),
           padding: EdgeInsets.only(left: 15.w),
           alignment: Alignment.centerLeft,
