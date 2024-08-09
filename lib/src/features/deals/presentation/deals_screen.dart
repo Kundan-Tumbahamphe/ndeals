@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ndeals/src/common_widgets/error_message_widget.dart';
+import 'package:ndeals/src/common_widgets/sticky_header_delegate.dart';
 import 'package:ndeals/src/features/deals/data/deals_repository.dart';
 import 'package:ndeals/src/features/deals/domain/deal.dart';
 
@@ -56,9 +57,10 @@ class _DealsScreenState extends ConsumerState<DealsScreen> {
   SliverPersistentHeader _buildStickySectionTitle(String title) {
     return SliverPersistentHeader(
       pinned: true,
-      delegate: AllDealsStickyHeaderDelegate(
+      delegate: StickyHeaderDelegate(
+        minHeight: 35.h,
+        maxHeight: 35.h,
         child: Container(
-          height: 35.h,
           color: const Color(0xfff6f6f6),
           padding: EdgeInsets.only(left: 15.w),
           alignment: Alignment.centerLeft,
@@ -379,28 +381,5 @@ class _DealsScreenState extends ConsumerState<DealsScreen> {
         ),
       ),
     );
-  }
-}
-
-class AllDealsStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  AllDealsStickyHeaderDelegate({required this.child});
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  double get maxExtent => 35.h;
-
-  @override
-  double get minExtent => 35.h;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
   }
 }
